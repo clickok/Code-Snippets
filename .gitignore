@@ -1,3 +1,5 @@
+# PYTHON STUFF
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -52,3 +54,35 @@ coverage.xml
 # Sphinx documentation
 docs/_build/
 
+
+# C Stuff
+
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Libraries
+*.lib
+*.a
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+###############################################################################
+# SYSTEM STUFF
+###############################################################################
+
+*.DS_Store
