@@ -36,11 +36,12 @@
 	Where "d" denotes a digit, and N = <num_tilings> 
 """
 
+import pylab as plt
 import numpy as np
 import os
 import sys
 
-def main():
+if __name__ == "__main__":
 	if len(sys.argv) < 3:
 		print("You need to specify two files to be read, <input> and <output>")
 		exit()
@@ -69,15 +70,15 @@ def main():
 
 		for line in output_file:
 			lst = [int(i) for i in line.strip().split()]
-			print(lst)
+			#print(lst)
 			tile_count[lst] += 1
 
 		print(tile_count)
+		non_zero = tile_count[tile_count != 0]
+
+		# Plot the distribution of the tiles...
+		# plt.imshow(tile_count.reshape(16, 32), cmap="hot")
 			
-	
 	finally:
 		input_file.close()
 		output_file.close()
-
-if __name__ == "__main__":
-	main()

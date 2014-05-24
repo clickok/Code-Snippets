@@ -71,7 +71,7 @@ def main():
 	num_lines, num_floats, float_factor, float_offset, num_ints, int_min, int_max = arg_vals
 
 	# Print the header
-	print("4 512", num_floats, num_ints)
+	print("4 512", num_floats, num_ints, end=" ")
 
 	for line in range(num_lines):
 		for i in range(num_floats):
