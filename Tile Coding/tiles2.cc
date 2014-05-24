@@ -137,7 +137,7 @@ int hash_UNH(int *ints, int num_ints, long m, int increment)
     
     /* if first call to hashing, initialize table of random numbers */
     if (first_call) {
-        printf("inside tiles \n");
+        //printf("inside tiles \n");
         for (k = 0; k < 2048; k++) {
             rndseq[k] = 0;
             for (i=0; i < int(sizeof(int)); ++i)

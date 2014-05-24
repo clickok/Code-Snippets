@@ -11,8 +11,8 @@ LDFLAGS =
 LDLIBS  = 
 
 # Project Specific
-SOURCES = tile_test.cc tiles.cc tiles2.cc
-DEPS    = tiles.hh tiles2.hh
+SOURCES = tile_test.cc tile_test2.cc tiles2.cc
+DEPS    = tiles2.hh
 OBJECTS = $(subst .cc,.o, $(SOURCES))
 
 EXECS  =  tile_test tile_test2
@@ -21,7 +21,11 @@ all: $(EXECS)
 	
 
 tile_test: $(OBJECTS)
-	$(CC) $(LDFLAGS) -o $@ $(OBJECTS) $(LDLIBS)
+	$(CC) $(LDFLAGS) -o $@ tile_test.o tiles2.o $(LDLIBS)
+
+tile_test2: $(OBJECTS)
+	$(CC) $(LDFLAGS) -o $@ tile_test2.o tiles2.o $(LDLIBS)
+
 
 %.o: %.cc $(DEPS)
 	$(CC) $(CFLAGS) $(CLIBS) -c -o $@ $< 
@@ -29,7 +33,7 @@ tile_test: $(OBJECTS)
 .PHONY: clean
 
 clean:
-	rm -f $(EXECS)
+	rm -f $(EXECS) $(OBJECTS)
 
 .PHONY: echo_vars
 
