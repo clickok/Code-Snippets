@@ -1,0 +1,25 @@
+# First, use lsusb and look for anything that might be a webcam
+lsusb
+
+# Then, say you got :
+# Bus 001 Device 002: ID ... Webcam Corp. Webacm
+# ... (Other Devices)
+
+# You could get a verbose listing of all sorts of information via
+lsusb -s 001:002 -v
+
+# But if you just want resolution and maybe framerate, you could use
+lsusb -s 001:002 -v | egrep "Width|Height|BitRate"
+
+# Which would give you something like:
+#        wWidth                            640
+#        wHeight                           480
+#        dwMinBitRate                 18432000
+#        dwMaxBitRate                 18432000
+
+# Divide BitRate by (Width * Height) and you get some idea of the FPS
+# (depending on pixel representation, but I am not sure)
+# Alternatively, you could look at "DefaultFrameInterval", which may
+# give you some insight (I am assuming they are microseconds, so 
+# (1000000 us / 1 s )/(33333 us/frame) = 30 frames / s, maybe
+ 

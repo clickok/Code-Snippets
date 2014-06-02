@@ -1,0 +1,10 @@
+# Use this script to capture images and rename within the current directory:
+
+while true; do
+  mplayer tv:// -vo jpeg -frames 1    # grab one frame from webcam and save it as 00000001.jpg
+  mv 00000001.jpg $(date +%s).jpg     # rename 00000001.jpg to something like 1344271221.jpg
+  sleep 1                             # sleep 1 second
+done
+
+# More detailed settings can be specified in the first line, e.g.:
+# mplayer tv:// -tv driver=v4l:device=/dev/video0:width=320:height=240:outfmt=rgb24 -frames 1 -vo jpeg
