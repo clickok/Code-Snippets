@@ -1,0 +1,10 @@
+# Via http://stackoverflow.com/questions/14059916/is-there-a-command-to-list-all-unix-group-names
+# To list just a user's groups
+groups
+
+# To list all groups on the system
+cut -d: -f1 /etc/group
+
+# And to add a user to a group...
+sudo usermod -a -G <group> <user>
+

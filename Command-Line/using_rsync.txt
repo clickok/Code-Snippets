@@ -1,0 +1,11 @@
+# Use rsync to synchronize all files in some remote directory with local directory
+rsync -r user@host:/remote/path/to/dir /local/path/to/dir
+
+# Sync all files in remote host directory (verbosely and human readable)
+rsync -rvh user@host:/remote/path/to/dir /local/path/to/dir
+
+# Sync all files in remote host over ssh
+rsync -rvhe ssh user@host:/remote/path/to/dir /local/path/to/dir
+
+# Sync all files in remote host over ssh w/ progress indicator
+rsync -rvhe ssh --progress user@host:/remote/path/to/dir /local/path/to/dir
