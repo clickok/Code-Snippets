@@ -1,0 +1,5 @@
+# If you have a sequence of photos in "/path/to/dir" and they are all jpeg files
+# you can get the median of all of the pixels (which would remove transient things
+# like people walking around) and produce "median_still.jpg" via
+
+convert -evaluate-sequence Median /path/to/dir/*.jpg median_still.jpg

@@ -1,0 +1,5 @@
+# To convert jpeg files in directory at 30 fps to "output.mpeg" by just copying:
+mencoder "mf:///path/to/dir/*.jpg" -ovc copy -mf fps=30 -o output.mpeg 
+
+# To convert jpeg files in current directory at 30 fps to "output.avi" with libav codecs
+mencoder "mf://./*.jpg" -ovc lavc -mf fps=30 -o output.avi 
