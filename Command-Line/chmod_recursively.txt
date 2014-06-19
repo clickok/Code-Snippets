@@ -1,0 +1,15 @@
+# `chmod` works by setting files for USER, GROUP, and WORLD, each via an octal
+# digit. Each bit refers to a different permission, e.g., read, write, execute.
+# We have: read = 4, write = 2, execute = 1
+# So, for example `chmod 764 file.txt` gives the user the ability to read,
+# write, and execute, the group the ability to read and write, and the world
+# the ability to read only. 
+
+# To change all directories to 755 (rwx-rx-rx), we can use `find`
+find /directory/to/mod -type d -exec chmod 755 {} \;
+
+# To change all files to 644 (rw-r-r) we can use
+find /directory/to/mod -type f -exec chmod 644 {} \;
+
+# To just use chmod recursively:
+chmod -R 666 /path/to/dir

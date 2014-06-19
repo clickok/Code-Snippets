@@ -1,0 +1,22 @@
+# We can create a tape archive file in the local directory with `tar` via:
+tar cf ./archive.tar /path/to/thing/to/archive 
+#(or perhaps `tar cf - /path/to/thing/to/archive > archive.tar)
+
+# We can create a *compressed* archive by piping the output:
+tar cf - /path/to/thing/to/archive | gzip > archive.tar.gz
+
+# If you want to make an archive with a progress bar, it is more complicated:
+# To use this, you need `pv` (pipe viewer) as well as `awk` and `du`
+# `pv` displays the progress of data through a pipeline
+# `awk` allows us to pass `pv` the size of `thing` (calculated with `du`)
+# As before, we pipe the output from `tar`, but through `pv`
+
+tar cf - /path/to/thing | pv -s $(du -sk /path/to/thing | awk '{print $1 * 1024}') | gzip > out.tar.gz
+
+# Mac OSX doesn't seem to support specifying the size in bytes, so we modify 
+# the output using `awk` to convert kilobytes to bytes. 
+# So now it works with both OSX and Linux
+
+# For reference:
+# http://www.ivarch.com/programs/quickref/pv.shtml
+# http://www.commandlinefu.com/commands/using/tar
