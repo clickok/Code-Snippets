@@ -1,0 +1,20 @@
+
+# To prepend a string to the beginning of each line in a file:
+awk '{print "prefix" $0}' file
+
+# To EXCLUDE a certain pattern using grep:
+grep -v pattern
+
+# To download with WGET using a different user-agent:
+wget --user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:21.0) Gecko/20100101 Firefox/21.0"
+
+# To download all files of some extension with WGET:
+wget -r -A .jpg http://site.with.images/url/
+
+# To ensure no "clobbering"/overwriting of files with WGET, use
+
+wget -nd <...>
+
+# To download from a list of addresses using WGET:
+
+wget -i list_of_files.txt
