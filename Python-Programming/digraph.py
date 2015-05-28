@@ -4,7 +4,8 @@ A relatively generic implementation of a directed graph in Python
 
 class GraphNode:
     """
-    A node in the graph,
+    A node in the graph, with its parents & children stored as a set of keys,
+    and the ability to initialize with a set of keys/values as a dict.
     """
     def __init__(self, **kwargs):
         self.__dict__['children'] = set()
@@ -69,11 +70,11 @@ class DirectedGraph:
             parent, child = edge
             self.add_edge(parent, child)
     
-    def add_node(self, node_key, attrs=None):
+    def add_node(self, node_key, values=None):
         """Add a GraphNode, optionally specifying its initial attributes."""
-        if attrs is None:
-            attrs = dict()
-        node = GraphNode(**attrs)
+        if values is None:
+            values = dict()
+        node = GraphNode(**values)
         self.node_map.setdefault(node_key, node)
 
     def connect(self, node1, node2):

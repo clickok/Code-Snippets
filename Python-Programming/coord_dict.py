@@ -1,7 +1,6 @@
 """
 Implementation of a dictionary which only accepts N-D coordinate tuples.
 """
-
 from collections import defaultdict
 
 
