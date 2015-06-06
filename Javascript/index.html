@@ -1,0 +1,105 @@
+<!-- Server side event (SSE) graphing !-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+
+<body>
+<h1>Hello</h1>
+
+<h1>Please</h1>
+
+<img src="http://i.imgur.com/ko7fQmP.jpg" style="width:100px; height:100px;">
+
+<!-- Highlight element and selection script -->
+<script type="text/javascript">
+
+
+var target; // Event target
+var elem;	// Non-overlay target
+var clicked // Element to be resized
+
+
+// Convert a numerical value to pixels for styling
+function topixel(val){
+	return Math.floor(val) + "px";
+}
+
+
+// Resize the element `clicked`, return its previous style
+function resize() {
+	if (typeof clicked !== 'undefined') {
+		var oldStyle = clicked.style;
+		clicked.style.position = 'absolute';
+		clicked.style.top    	= topixel(0);
+		clicked.style.left   	= topixel(0);
+		clicked.style.width  	= topixel(window.innerWidth);
+		clicked.style.height 	= topixel(window.innerHeight);
+		clicked.background 		= 'white';
+		return oldStyle;
+	}
+}
+
+window.addEventListener('resize', resize, false);
+
+
+function highlight() { 
+	// Create the overlay
+	var overlay = document.createElement('overlay');
+	overlay.id 					= 'overlay'
+	overlay.style.position 		= "absolute";
+	overlay.style.height 		= "100px";
+	overlay.style.width  		= "100px";
+	overlay.style.top 			= "0px";
+	overlay.style.left 			= "0px"
+	overlay.style.background 	= "black";
+	overlay.style.opacity 		= 0.5;
+	overlay.style.zIndex 		= 1000000;
+	document.body.appendChild(overlay);
+
+
+	// Don't bother with browsers that don't have `addEventListener`
+    document.body.addEventListener('mouseover', highlighter, false);
+    document.body.addEventListener('click', onClick, false);
+    
+
+    // Highlight the element the mouse is over
+    function highlighter(event) {
+        target = event.target;
+        targetOffset = target.getBoundingClientRect();
+        targetID = target.id;
+        
+        // Ignore attempts to select overlay or document body
+        if (targetID.indexOf('overlay') !== -1 || target === document.body)
+        {
+        	return;
+        }
+        else {
+	        elem = target;
+	        overlay.style.top 		= topixel(targetOffset.top);
+	        overlay.style.left 		= topixel(targetOffset.left);
+	        overlay.style.height 	= topixel(targetOffset.height);
+	        overlay.style.width		= topixel(targetOffset.width);
+	    }
+    }
+
+    // Resize highlighted element when clicked
+    function onClick(event) {
+    	clicked = elem;
+    	resize();
+
+    	// Remove overlay
+    	overlay.remove();
+    	// After clicking, event listeners should be removed
+    	document.body.removeEventListener('mouseover', highlighter);
+    	document.body.removeEventListener('click', onClick);
+    }
+}
+
+highlight();
+
+</script>
+</body>
+</html>
