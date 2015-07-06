@@ -21,6 +21,13 @@ def get_all_tabs(win_ids=None):
 
 	return [t for t in w.tabs() for w in windows]
 
+def print_windows():
+    """ Print the window titles and ids, for convenience """
+    C = app.app('Google Chrome')
+    if C.windows.count():
+        for w in C.windows():
+            print(w.id(), '\t', w.title()[:min(70, len(w.title()))])
+
 def print_all_tabs(win_ids=None):
 	"""List all tabs by ID, then title <TAB> URL on the next line"""
 	if win_ids:
