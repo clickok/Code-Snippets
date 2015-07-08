@@ -46,4 +46,4 @@ if __name__ == "__main__":
 		win_ids = [int(x) for x in sys.argv[1:]]
 		print_all_tabs(win_ids)
 	else:
-		print_all_tabs()
+		print_windows()
